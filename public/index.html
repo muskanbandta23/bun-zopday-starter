@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bun starter</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        font-family: system-ui, -apple-system, sans-serif;
+        background: #14151a;
+        color: #fbf0df;
+      }
+      main { max-width: 32rem; padding: 2rem; text-align: center; }
+      h1 { font-size: 2rem; margin: 0 0 0.5rem; }
+      p { opacity: 0.8; line-height: 1.5; }
+      button {
+        margin-top: 1rem;
+        padding: 0.6rem 1.2rem;
+        font: inherit;
+        border: 0;
+        border-radius: 0.5rem;
+        background: #f472b6;
+        color: #14151a;
+        cursor: pointer;
+      }
+      pre {
+        margin-top: 1.5rem;
+        padding: 1rem;
+        text-align: left;
+        border-radius: 0.5rem;
+        background: #1f2028;
+        overflow-x: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Your Bun app is running</h1>
+      <p>This page is served by <code>Bun.serve()</code>. Click the button to call the <code>/api/hello</code> route.</p>
+      <button id="ping">Call /api/hello</button>
+      <pre id="out" hidden></pre>
+    </main>
+    <script>
+      document.getElementById("ping").addEventListener("click", async () => {
+        const out = document.getElementById("out");
+        const res = await fetch("/api/hello");
+        out.textContent = JSON.stringify(await res.json(), null, 2);
+        out.hidden = false;
+      });
+    </script>
+  </body>
+</html>
